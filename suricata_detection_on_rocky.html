@@ -1,0 +1,274 @@
+
+
+[shali11@localhost ~]$ ifconfig
+ens160: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.79.130  netmask 255.255.255.0  broadcast 192.168.79.255
+        inet6 fe80::20c:29ff:fe82:6584  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:82:65:84  txqueuelen 1000  (Ethernet)
+        RX packets 678  bytes 57124 (55.7 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 443  bytes 40562 (39.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 18  bytes 2112 (2.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 18  bytes 2112 (2.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+[shali11@localhost ~]$ ping 192.168.79.50
+PING 192.168.79.50 (192.168.79.50) 56(84) bytes of data.
+64 bytes from 192.168.79.50: icmp_seq=1 ttl=64 time=7.67 ms
+64 bytes from 192.168.79.50: icmp_seq=2 ttl=64 time=1.17 ms
+64 bytes from 192.168.79.50: icmp_seq=3 ttl=64 time=3.35 ms
+64 bytes from 192.168.79.50: icmp_seq=4 ttl=64 time=16.6 ms
+64 bytes from 192.168.79.50: icmp_seq=5 ttl=64 time=15.2 ms
+64 bytes from 192.168.79.50: icmp_seq=6 ttl=64 time=0.897 ms
+64 bytes from 192.168.79.50: icmp_seq=7 ttl=64 time=1.78 ms
+64 bytes from 192.168.79.50: icmp_seq=8 ttl=64 time=1.57 ms
+64 bytes from 192.168.79.50: icmp_seq=9 ttl=64 time=0.997 ms
+64 bytes from 192.168.79.50: icmp_seq=10 ttl=64 time=1.93 ms
+64 bytes from 192.168.79.50: icmp_seq=11 ttl=64 time=0.724 ms
+64 bytes from 192.168.79.50: icmp_seq=12 ttl=64 time=0.778 ms
+64 bytes from 192.168.79.50: icmp_seq=13 ttl=64 time=0.924 ms
+64 bytes from 192.168.79.50: icmp_seq=14 ttl=64 time=1.71 ms
+64 bytes from 192.168.79.50: icmp_seq=15 ttl=64 time=3.37 ms
+64 bytes from 192.168.79.50: icmp_seq=16 ttl=64 time=2.28 ms
+64 bytes from 192.168.79.50: icmp_seq=17 ttl=64 time=4.03 ms
+64 bytes from 192.168.79.50: icmp_seq=18 ttl=64 time=1.71 ms
+64 bytes from 192.168.79.50: icmp_seq=19 ttl=64 time=16.6 ms
+64 bytes from 192.168.79.50: icmp_seq=20 ttl=64 time=2.18 ms
+64 bytes from 192.168.79.50: icmp_seq=21 ttl=64 time=3.58 ms
+64 bytes from 192.168.79.50: icmp_seq=22 ttl=64 time=1.33 ms
+64 bytes from 192.168.79.50: icmp_seq=23 ttl=64 time=1.71 ms
+64 bytes from 192.168.79.50: icmp_seq=24 ttl=64 time=1.43 ms
+64 bytes from 192.168.79.50: icmp_seq=25 ttl=64 time=1.87 ms
+64 bytes from 192.168.79.50: icmp_seq=26 ttl=64 time=1.86 ms
+64 bytes from 192.168.79.50: icmp_seq=27 ttl=64 time=2.18 ms
+64 bytes from 192.168.79.50: icmp_seq=28 ttl=64 time=1.77 ms
+64 bytes from 192.168.79.50: icmp_seq=29 ttl=64 time=1.79 ms
+64 bytes from 192.168.79.50: icmp_seq=30 ttl=64 time=2.00 ms
+64 bytes from 192.168.79.50: icmp_seq=31 ttl=64 time=14.0 ms
+^X64 bytes from 192.168.79.50: icmp_seq=32 ttl=64 time=1.51 ms
+64 bytes from 192.168.79.50: icmp_seq=33 ttl=64 time=0.845 ms
+64 bytes from 192.168.79.50: icmp_seq=34 ttl=64 time=1.69 ms
+64 bytes from 192.168.79.50: icmp_seq=35 ttl=64 time=15.3 ms
+64 bytes from 192.168.79.50: icmp_seq=36 ttl=64 time=0.587 ms
+^C
+--- 192.168.79.50 ping statistics ---
+36 packets transmitted, 36 received, 0% packet loss, time 35123ms
+rtt min/avg/max/mdev = 0.587/3.858/16.592/4.864 ms
+
+[shali11@localhost ~]$ sudo systemctl start suricata
+[shali11@localhost ~]$ sudo systemctl status suricata
+× suricata.service - Suricata Intrusion Detection Service
+     Loaded: loaded (/usr/lib/systemd/system/suricata.service; disabled; preset>
+     Active: failed (Result: exit-code) since Thu 2025-01-02 01:58:04 EAT; 9s a>
+   Duration: 20.562s
+       Docs: man:suricata(1)
+    Process: 3614 ExecStartPre=/bin/rm -f /var/run/suricata.pid (code=exited, s>
+    Process: 3615 ExecStart=/sbin/suricata -c /etc/suricata/suricata.yaml --pid>
+   Main PID: 3615 (code=exited, status=1/FAILURE)
+        CPU: 20.364s
+
+Jan 02 01:57:44 localhost.localdomain suricata[3615]: W: runmodes: output modul>
+Jan 02 01:57:44 localhost.localdomain suricata[3615]: E: logopenfile: Error ope>
+Jan 02 01:57:44 localhost.localdomain suricata[3615]: W: runmodes: output modul>
+Jan 02 01:58:04 localhost.localdomain suricata[3615]: E: af-packet: eth0: faile>
+Jan 02 01:58:04 localhost.localdomain suricata[3615]: E: af-packet: eth0: faile>
+Jan 02 01:58:04 localhost.localdomain suricata[3615]: E: af-packet: eth0: faile>
+Jan 02 01:58:04 localhost.localdomain suricata[3615]: E: threads: thread "W#01->
+Jan 02 01:58:04 localhost.localdomain systemd[1]: suricata.service: Main proces>
+Jan 02 01:58:04 localhost.localdomain systemd[1]: suricata.service: Failed with>
+Jan 02 01:58:04 localhost.localdomain systemd[1]: suricata.service: Consumed 20>
+
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/fast.log
+^C
+[shali11@localhost ~]$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:82:65:84 brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    inet 192.168.79.130/24 brd 192.168.79.255 scope global dynamic noprefixroute ens160
+       valid_lft 1547sec preferred_lft 1547sec
+    inet6 fe80::20c:29ff:fe82:6584/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+[shali11@localhost ~]$ sudo nano /etc/suricata/suricata.yaml
+[sudo] password for shali11: 
+[shali11@localhost ~]$ sudo nano /etc/suricata/suricata.yaml
+[shali11@localhost ~]$ sudo systemctl restart suricata
+[shali11@localhost ~]$ sudo systemctl status suricata
+× suricata.service - Suricata Intrusion Detection Service
+     Loaded: loaded (/usr/lib/systemd/system/suricata.service; disabled; preset>
+     Active: failed (Result: exit-code) since Thu 2025-01-02 02:11:25 EAT; 1min>
+   Duration: 30.171s
+       Docs: man:suricata(1)
+    Process: 3767 ExecStartPre=/bin/rm -f /var/run/suricata.pid (code=exited, s>
+    Process: 3768 ExecStart=/sbin/suricata -c /etc/suricata/suricata.yaml --pid>
+   Main PID: 3768 (code=exited, status=1/FAILURE)
+        CPU: 29.712s
+
+Jan 02 02:10:56 localhost.localdomain suricata[3768]: W: runmodes: output modul>
+Jan 02 02:10:56 localhost.localdomain suricata[3768]: E: logopenfile: Error ope>
+Jan 02 02:10:56 localhost.localdomain suricata[3768]: W: runmodes: output modul>
+Jan 02 02:11:25 localhost.localdomain suricata[3768]: E: af-packet: eth0: faile>
+Jan 02 02:11:25 localhost.localdomain suricata[3768]: E: af-packet: eth0: faile>
+Jan 02 02:11:25 localhost.localdomain suricata[3768]: E: af-packet: eth0: faile>
+Jan 02 02:11:25 localhost.localdomain suricata[3768]: E: threads: thread "W#01->
+Jan 02 02:11:25 localhost.localdomain systemd[1]: suricata.service: Main proces>
+Jan 02 02:11:25 localhost.localdomain systemd[1]: suricata.service: Failed with>
+Jan 02 02:11:25 localhost.localdomain systemd[1]: suricata.service: Consumed 29>
+lines 1-20/20 (END)
+[shali11@localhost ~]$ sudo nano /etc/suricata/suricata.yaml
+[shali11@localhost ~]$ ls -ld /var/log/suricata
+drwxr-x---. 2 suricata suricata 75 Jan  1 23:04 /var/log/suricata
+[shali11@localhost ~]$ sudo chmod -R 755 /var/log/suricata
+[shali11@localhost ~]$ sudo systemctl cat suricata
+# /usr/lib/systemd/system/suricata.service
+# Sample Suricata systemd unit file.
+[Unit]
+Description=Suricata Intrusion Detection Service
+After=syslog.target network-online.target systemd-tmpfiles-setup.service
+Documentation=man:suricata(1)
+
+[Service]
+# Environment file to pick up $OPTIONS. On Fedora/EL this would be
+# /etc/sysconfig/suricata, or on Debian/Ubuntu, /etc/default/suricata.
+EnvironmentFile=-/etc/sysconfig/suricata
+#EnvironmentFile=-/etc/default/suricata
+ExecStartPre=/bin/rm -f /var/run/suricata.pid
+ExecStart=/sbin/suricata -c /etc/suricata/suricata.yaml --pidfile /var/run/suri>
+ExecReload=/bin/kill -USR2 $MAINPID
+
+### Security Settings ###
+MemoryDenyWriteExecute=true
+LockPersonality=true
+ProtectControlGroups=true
+ProtectKernelModules=true
+
+[Install]
+
+[shali11@localhost ~]$ sudo systemctl restart suricata
+[shali11@localhost ~]$ sudo systemctl status suricata
+● suricata.service - Suricata Intrusion Detection Service
+     Loaded: loaded (/usr/lib/systemd/system/suricata.service; disabled; preset>
+     Active: active (running) since Thu 2025-01-02 02:19:50 EAT; 7s ago
+       Docs: man:suricata(1)
+    Process: 3861 ExecStartPre=/bin/rm -f /var/run/suricata.pid (code=exited, s>
+   Main PID: 3863 (Suricata-Main)
+      Tasks: 1 (limit: 22811)
+     Memory: 165.8M
+        CPU: 7.705s
+     CGroup: /system.slice/suricata.service
+             └─3863 /sbin/suricata -c /etc/suricata/suricata.yaml --pidfile /va>
+
+Jan 02 02:19:50 localhost.localdomain systemd[1]: Starting Suricata Intrusion D>
+Jan 02 02:19:50 localhost.localdomain systemd[1]: Started Suricata Intrusion De>
+Jan 02 02:19:50 localhost.localdomain suricata[3863]: i: suricata: This is Suri>
+Jan 02 02:19:50 localhost.localdomain suricata[3863]: W: ioctl: Failure when tr>
+Jan 02 02:19:50 localhost.localdomain suricata[3863]: E: logopenfile: Error ope>
+Jan 02 02:19:50 localhost.localdomain suricata[3863]: W: runmodes: output modul>
+Jan 02 02:19:50 localhost.localdomain suricata[3863]: E: logopenfile: Error ope>
+Jan 02 02:19:50 localhost.localdomain suricata[3863]: W: runmodes: output modul>
+Jan 02 02:19:50 localhost.localdomain suricata[3863]: E: logopenfile: Error ope>
+Jan 02 02:19:50 localhost.localdomain suricata[3863]: W: runmodes: output modul>
+
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/eve.json
+^C
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/suricata.log
+[3863 - Suricata-Main] 2025-01-02 02:19:50 Info: conf: Running in live mode, activating unix socket
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: detect: 1 rule files processed. 41333 rules successfully loaded, 0 rules failed, 0
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: detect: 41336 signatures processed. 1172 are IP-only rules, 4294 are inspecting packet payload, 35660 inspect application layer, 108 are decoder event only
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to find interface type: No such device
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Info: runmodes: eth0: creating 2 threads
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[3874 - W#01-eth0] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to find interface: No such device
+[3874 - W#01-eth0] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to init socket for interface
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Error: threads: thread "W#01-eth0" failed to start: flags 0423
+^C
+[shali11@localhost ~]$ ping 192.168.79.50
+PING 192.168.79.50 (192.168.79.50) 56(84) bytes of data.
+64 bytes from 192.168.79.50: icmp_seq=1 ttl=64 time=10.6 ms
+64 bytes from 192.168.79.50: icmp_seq=2 ttl=64 time=9.35 ms
+64 bytes from 192.168.79.50: icmp_seq=3 ttl=64 time=2.23 ms
+64 bytes from 192.168.79.50: icmp_seq=4 ttl=64 time=0.704 ms
+64 bytes from 192.168.79.50: icmp_seq=5 ttl=64 time=1.27 ms
+64 bytes from 192.168.79.50: icmp_seq=6 ttl=64 time=8.30 ms
+^C
+--- 192.168.79.50 ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5016ms
+rtt min/avg/max/mdev = 0.704/5.407/10.595/4.087 ms
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/suricata.log
+[3863 - Suricata-Main] 2025-01-02 02:19:50 Info: conf: Running in live mode, activating unix socket
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: detect: 1 rule files processed. 41333 rules successfully loaded, 0 rules failed, 0
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: detect: 41336 signatures processed. 1172 are IP-only rules, 4294 are inspecting packet payload, 35660 inspect application layer, 108 are decoder event only
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to find interface type: No such device
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Info: runmodes: eth0: creating 2 threads
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[3874 - W#01-eth0] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to find interface: No such device
+[3874 - W#01-eth0] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to init socket for interface
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Error: threads: thread "W#01-eth0" failed to start: flags 0423
+^C
+[shali11@localhost ~]$ sudo less /var/log/suricata/eve.json
+[shali11@localhost ~]$ sudo cat /var/log/suricata/eve.json
+[shali11@localhost ~]$ sudo watch -n 1 cat /var/log/suricata/eve.json
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/suricata.log
+[sudo] password for shali11: 
+[3863 - Suricata-Main] 2025-01-02 02:19:50 Info: conf: Running in live mode, activating unix socket
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: detect: 1 rule files processed. 41333 rules successfully loaded, 0 rules failed, 0
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: detect: 41336 signatures processed. 1172 are IP-only rules, 4294 are inspecting packet payload, 35660 inspect application layer, 108 are decoder event only
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to find interface type: No such device
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Info: runmodes: eth0: creating 2 threads
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[3874 - W#01-eth0] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to find interface: No such device
+[3874 - W#01-eth0] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to init socket for interface
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Error: threads: thread "W#01-eth0" failed to start: flags 0423
+^C
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/eve.json
+^C
+[shali11@localhost ~]$ sudo watch -n 1 cat /var/log/suricata/eve.json
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/eve.json
+^C
+[shali11@localhost ~]$ ls -l /var/log/suricata/eve.json
+-rwxr-xr-x. 1 root root 0 Jan  1 23:04 /var/log/suricata/eve.json
+[shali11@localhost ~]$ sudo chown suricata:suricata /var/log/suricata/eve.json
+[sudo] password for shali11: 
+[shali11@localhost ~]$ sudo chmod 644 /var/log/suricata/eve.json
+[shali11@localhost ~]$ sudo ping -f -s 65000 192.168.79.130
+PING 192.168.79.130 (192.168.79.130) 65000(65028) bytes of data.
+^C 
+--- 192.168.79.130 ping statistics ---
+477907 packets transmitted, 477907 received, 0% packet loss, time 55418ms
+rtt min/avg/max/mdev = 0.009/0.015/7.875/0.025 ms, pipe 2, ipg/ewma 0.115/0.069 ms
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/eve.json
+^C
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/fast.log
+^C
+[shali11@localhost ~]$ sudo cat /var/log/suricata/eve.json
+[sudo] password for shali11: 
+[shali11@localhost ~]$ sudo watch -n 1 cat /var/log/suricata/eve.json
+[shali11@localhost ~]$ sudo tail -f /var/log/suricata/suricata.log
+[3863 - Suricata-Main] 2025-01-02 02:19:50 Info: conf: Running in live mode, activating unix socket
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: detect: 1 rule files processed. 41333 rules successfully loaded, 0 rules failed, 0
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: threshold-config: Threshold config parsed: 0 rule(s) found
+[3863 - Suricata-Main] 2025-01-02 02:20:03 Info: detect: 41336 signatures processed. 1172 are IP-only rules, 4294 are inspecting packet payload, 35660 inspect application layer, 108 are decoder event only
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to find interface type: No such device
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Info: runmodes: eth0: creating 2 threads
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Info: unix-manager: unix socket '/var/run/suricata/suricata-command.socket'
+[3874 - W#01-eth0] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to find interface: No such device
+[3874 - W#01-eth0] 2025-01-02 02:20:18 Error: af-packet: eth0: failed to init socket for interface
+[3863 - Suricata-Main] 2025-01-02 02:20:18 Error: threads: thread "W#01-eth0" failed to start: flags 0423
+
+
